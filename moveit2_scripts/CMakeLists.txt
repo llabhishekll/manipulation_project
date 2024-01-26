@@ -8,14 +8,20 @@ endif()
 # find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
+find_package(rclcpp_action REQUIRED)
+find_package(control_msgs REQUIRED)
+find_package(moveit_core REQUIRED)
+find_package(moveit_ros_planning REQUIRED)
+find_package(moveit_ros_planning_interface REQUIRED)
+find_package(interactive_markers REQUIRED)
 
 # build
-add_executable(pick_and_place src/pick_and_place.cpp)
-ament_target_dependencies(pick_and_place rclcpp)
+add_executable(pick_and_place_sim src/pick_and_place_sim.cpp)
+ament_target_dependencies(pick_and_place_sim rclcpp rclcpp_action moveit_core moveit_ros_planning_interface interactive_markers moveit_ros_planning control_msgs)
 
 # install
 install(TARGETS 
-	pick_and_place
+	pick_and_place_sim
 	DESTINATION lib/${PROJECT_NAME}
 )
 
